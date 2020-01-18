@@ -13,38 +13,39 @@ for(let i = 0; i < slidesCount; i++){
 
 }
 
-for(let z = 0; z < dotes.length; z++){
-	dotes[z].onclick = function() {
-		slides[currentSlide].className = "slider__item";
-		dotes[currentSlide].className = "slider__dot";
-
-		currentSlide = z;
+function changeSlide(prevSlide, currentSlide) {
+		slides[prevSlide].className = "slider__item";
+		dotes[prevSlide].className = "slider__dot";
 
 		slides[currentSlide].className = "slider__item slider__item_active";
-		dotes[z].className = "slider__dot slider__dot_active";
+		dotes[currentSlide].className = "slider__dot slider__dot_active";
+}
+
+for(let z = 0; z < dotes.length; z++){
+	dotes[z].onclick = function() {
+		let prevSlide = currentSlide;
+		currentSlide = z;
+
+		changeSlide(prevSlide, currentSlide);
 	}
 }
 
 prevButton[0].onclick = function() {
-	slides[currentSlide].className = "slider__item";
-	dotes[currentSlide].className = "slider__dot";
+	let prevSlide = currentSlide;
 
 	currentSlide = currentSlide - 1;
 	if(currentSlide < 0) {currentSlide = slidesCount - 1;}
 
-	slides[currentSlide].className = "slider__item slider__item_active";
-	dotes[currentSlide].className = "slider__dot slider__dot_active";
+	changeSlide(prevSlide, currentSlide);
 }
 
 nextbutton[0].onclick = function() {
-	slides[currentSlide].className = "slider__item";
-	dotes[currentSlide].className = "slider__dot";
+	let prevSlide = currentSlide;
 
 	currentSlide = currentSlide + 1;
 	if(currentSlide > slidesCount - 1) {currentSlide = 0;}
 
-	slides[currentSlide].className = "slider__item slider__item_active";
-	dotes[currentSlide].className = "slider__dot slider__dot_active";
+	changeSlide(prevSlide, currentSlide);
 }
 
 
