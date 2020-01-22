@@ -25,21 +25,18 @@ class Game {
       При неправильном вводе символа - this.fail();
      */
 
-     
-     let cur = this.currentSymbol.textContent;
 
-    function checkSymbol(event) { 
-      if(event.key == cur) {
-        this.success();
-      }
-    
-    }
+     let cur;
 
-   window.addEventListener('keydown', checkSymbol);
-
-    
+     window.onkeydown = (event) => { 
 
 
+      cur = this.currentSymbol.textContent; 
+      if(event.key == cur) 
+        { this.success(); 
+        } 
+      else this.fail(); 
+    };
 
 
   }
