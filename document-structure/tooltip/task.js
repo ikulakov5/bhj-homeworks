@@ -9,14 +9,14 @@ for (let tip of tips) {
 			if (activeTooltip.textContent != tipTitle) {
                 activeTooltip.remove();
 				let left = tip.getBoundingClientRect().left;
-				let top = tip.getBoundingClientRect().top;
+				let top = tip.getBoundingClientRect().top + 18;
 				tip.insertAdjacentHTML("afterEnd", `<div class="tooltip tooltip_active" style="left: ${left}px; top: ${top}px">${tipTitle}</div>`);
 		        } else {
                 activeTooltip.remove();
         		}
  		} else {
 		let left = tip.getBoundingClientRect().left;
-		let top = tip.getBoundingClientRect().top;
+		let top = tip.getBoundingClientRect().top + 18;
 
 		tip.insertAdjacentHTML("afterEnd", `<div class="tooltip tooltip_active" style="left: ${left}px; top: ${top}px">${tipTitle}</div>`);
 		}
