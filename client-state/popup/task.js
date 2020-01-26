@@ -1,25 +1,25 @@
 let modal = document.getElementById('subscribe-modal');
+const close = document.querySelector('.modal__close');
 
-// const getCookie = (name) => {
-// 	const value = "; " + document.cookie;
-// 	let parts = value.split("; " + name + "=");
-// 	if (parts.length === 2) {
-// 		return parts
-// 		.pop()
-// 		.split(";")
-// 		.shift();
-// 	}
-// }
-
-
-
-window.onload = function() {
-	modal.classList.add('modal_active');
+let getCookie = (name) => {
+	let value = "; " + document.cookie;
+	let parts = value.split("; " + name + "=");
+	if (parts.length === 2) {
+	  return parts
+	  .pop()
+	  .split(";")
+	  .shift();
+	  }
 }
 
-let closeBtn = modal.querySelector('.modal__close_times');
-
-closeBtn.addEventListener('click', (e) => {
-	modal.classList.remove('modal_active');
-	document.cookie = 'modal=close';
-});
+window.onload = function() {
+if (getCookie('user')) {
+  return
+} else {
+    modal.classList.toggle('modal_active');
+    close.onclick = function() {
+	    document.cookie = 'user=' + encodeURIComponent('close');
+	    modal.classList.toggle('modal_active');
+    }
+  }
+}
