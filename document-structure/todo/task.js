@@ -14,7 +14,9 @@ addBtn.addEventListener("click", (e) => {
 
 });
 
-window.onclick = (e) => {
+let tasksListing = document.getElementById('tasks__list');
+
+tasksListing.onclick = (e) => {
     if (e.target.classList.contains('task__remove')) {
         e.target.parentElement.remove();
     }
