@@ -27,22 +27,20 @@ for (let product of products) {
     addBtn.addEventListener("click", (e) => {
         let cartProducts = document.querySelector('.cart__products');
         let cartAdded = cartProducts.querySelectorAll(".cart__product");
+        cartAddeder = Array.from(cartAdded);
 
-        if(cartAdded.length < 1) {
-            cartProducts.insertAdjacentHTML('beforeEnd', `<div class='cart__product' data-id='${product.dataset.id}'>
-                <img class='cart__product-image' src='${itemImage.src}'><div class='cart__product-count'>${numCount}</div></div>`);
-        } else {
-            for (let added of cartAdded) {
-                if(added.dataset.id === product.dataset.id) {
-                    let newCount = added.querySelector(".cart__product-count").innerText * 1;
-                    newCount = newCount + numCount;
-                    added.querySelector(".cart__product-count").innerText = newCount;
-                } else {
-                    cartProducts.insertAdjacentHTML('beforeEnd', `<div class='cart__product' data-id='${product.dataset.id}'>
+            let cheker = cartAddeder.find(cartAddeder => cartAddeder.dataset.id == product.dataset.id);
+            if(cheker === undefined) {
+                cartProducts.insertAdjacentHTML('beforeEnd', `<div class='cart__product' data-id='${product.dataset.id}'>
                         <img class='cart__product-image' src='${itemImage.src}'><div class='cart__product-count'>${numCount}</div></div>`);
-                }
+            } else {
+                let check = cartAddeder.filter(cartAddeder => cartAddeder.dataset.id == product.dataset.id);
+                let newCount = check[0].querySelector(".cart__product-count").innerText * 1;
+                newCount = newCount + numCount;
+                check[0].querySelector(".cart__product-count").innerText = newCount;
+
             }
-        }
+
         e.preventDefault();
     });
 
