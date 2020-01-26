@@ -5,5 +5,7 @@ window.onload = function(){
 }
 
 editor.addEventListener('input', (e) => {
-	localStorage.setItem('formText', editor.value);
+	if(editor.value != '') {
+		localStorage.setItem('formText', editor.value);
+	}
 });
